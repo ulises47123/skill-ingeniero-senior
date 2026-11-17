@@ -1,0 +1,146 @@
+/*
+ * Plantilla de tokens de diseño.
+ *
+ * Esto es ESTRUCTURA, no estética: los nombres y la organización se reutilizan,
+ * pero los valores deben salir del plan de diseño de cada proyecto
+ * (ver diseno/GUIA.md, sección 2). No copies estos colores tal cual.
+ *
+ * Si el proyecto usa Tailwind u otro sistema de temas, traslada estos mismos
+ * tokens a su configuración en lugar de usar este archivo.
+ */
+
+:root {
+  /* Color: base (reemplazar según el plan) */
+  --color-fondo: #ffffff;
+  --color-superficie: #f5f6f8;
+  --color-texto: #1a1d23;
+  --color-texto-secundario: #5b6270;
+  --color-borde: #d9dde3;
+  --color-acento: #2457d6;
+  --color-acento-texto: #ffffff; /* texto sobre el acento; comprobar contraste AA */
+
+  /* Color: semánticos */
+  --color-exito: #1f7a4d;
+  --color-error: #c2352b;
+  --color-aviso: #9a6200;
+  --color-info: #2457d6;
+
+  /* Tipografía */
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-titulos: var(--fuente-texto);
+  --fuente-mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* Escala tipográfica (proporción 1.25 sobre 1rem = 16px) */
+  --texto-xs: 0.8rem;
+  --texto-sm: 0.875rem;
+  --texto-base: 1rem;
+  --texto-lg: 1.25rem;
+  --texto-xl: 1.563rem;
+  --texto-2xl: 1.953rem;
+  --texto-3xl: 2.441rem;
+
+  --interlineado-texto: 1.5;
+  --interlineado-titulos: 1.15;
+  --ancho-lectura: 65ch;
+
+  /* Espaciado (base 4px) */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-6: 1.5rem;
+  --espacio-8: 2rem;
+  --espacio-12: 3rem;
+  --espacio-16: 4rem;
+
+  /* Radios (pocos y con jerarquía) */
+  --radio-sm: 4px;   /* inputs, etiquetas */
+  --radio-md: 8px;   /* botones, tarjetas */
+  --radio-lg: 16px;  /* modales, paneles */
+
+  /* Elevación (máximo 3 niveles) */
+  --sombra-1: 0 1px 2px rgb(0 0 0 / 0.08);
+  --sombra-2: 0 4px 12px rgb(0 0 0 / 0.12);
+  --sombra-3: 0 12px 32px rgb(0 0 0 / 0.18);
+
+  /* Movimiento */
+  --duracion-rapida: 150ms;
+  --duracion-media: 250ms;
+  --curva-salida: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Foco visible */
+  --anillo-foco: 0 0 0 3px color-mix(in srgb, var(--color-acento) 45%, transparent);
+
+  /* Capas */
+  --z-dropdown: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+
+  color-scheme: light dark;
+}
+
+/* Modo oscuro según el sistema, salvo que el usuario haya elegido claro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-fondo: #12141a;
+    --color-superficie: #1c1f27;
+    --color-texto: #e8eaee;
+    --color-texto-secundario: #a3a9b5;
+    --color-borde: #2e333e;
+    --color-acento: #6d93f2;
+    --color-acento-texto: #0d1020;
+  }
+}
+
+/* Modo oscuro elegido manualmente */
+:root[data-theme="dark"] {
+  --color-fondo: #12141a;
+  --color-superficie: #1c1f27;
+  --color-texto: #e8eaee;
+  --color-texto-secundario: #a3a9b5;
+  --color-borde: #2e333e;
+  --color-acento: #6d93f2;
+  --color-acento-texto: #0d1020;
+}
+
+/* Base mínima */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-base);
+  line-height: var(--interlineado-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--anillo-foco);
+  border-radius: var(--radio-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
